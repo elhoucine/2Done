@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 import {
   fetchTodos,
@@ -13,7 +11,7 @@ import AddTodo from './AddTodo'
 
 export default function TodoContainer() {
   const [todos, setTodos] = useState<TodosType>({})
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)  
 
   const fetchData = () => {
     fetchTodos()
@@ -54,7 +52,7 @@ export default function TodoContainer() {
   }
 
   return (
-    <div className='shadow-xl ring-gray-900/5 rounded-lg bg-white mt-36 w-1/2 mx-auto p-5 h-96'>
+    <>
       {isLoading && <p>Loading items, please hold on...</p>}
       {!isLoading ? (
         <>
@@ -66,6 +64,6 @@ export default function TodoContainer() {
           />
         </>
       ) : null}
-    </div>
+    </>
   )
 }

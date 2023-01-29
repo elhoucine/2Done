@@ -7,7 +7,7 @@ import { UserType } from '@/entities/users/types'
 const DEFAULT_USERNAME = 'trustpair'
 
 const initGetUser = (): UserType => {
-  if (!store(DEFAULT_USERNAME)) {
+  if (!store(DEFAULT_USERNAME).todos) {
     store(DEFAULT_USERNAME, {
       username: DEFAULT_USERNAME,
       password: 'trustpair',
@@ -24,9 +24,7 @@ const saveToStore = (todos: TodosType): void => {
 }
 
 export const authUser = (username: string, password: string): string => {
-  const user = initGetUser()
-  console.dir({ ii: { username, password } })
-
+  const user = initGetUser()  
   if (username === user.username && password === user.password) {
     const uid = new ShortUniqueId({ length: 10 })()
     store(DEFAULT_USERNAME, { ...user, token: uid })
