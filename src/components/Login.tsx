@@ -23,9 +23,7 @@ export default function Login({ onLogin }: Props) {
     e.preventDefault()
     try {
       const res = await login(username, password)      
-      if (res) {
-        console.log({ res });
-        
+      if (res) {        
         localStorage.setItem('token', res)
         onLogin(res)
       } else {

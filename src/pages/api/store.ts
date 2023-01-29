@@ -7,7 +7,7 @@ import { UserType } from '@/entities/users/types'
 const DEFAULT_USERNAME = 'trustpair'
 
 const initGetUser = (): UserType => {
-  if (!store(DEFAULT_USERNAME).todos) {
+  if (!store(DEFAULT_USERNAME)) {
     store(DEFAULT_USERNAME, {
       username: DEFAULT_USERNAME,
       password: 'trustpair',
