@@ -19,6 +19,8 @@ export default function AddTodo({ onSave }: Props) {
 
   return (
     <div>
+      <h1>Very long header title text to showcase</h1>
+      <h1>Very long header title text to showcase</h1>
       <form name='Adding new todo form' onSubmit={handleOnFormSubmit}>
         <input
             type="text"

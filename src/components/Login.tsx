@@ -1,7 +1,8 @@
 'use client'
 
-import { login } from '@/entities/users/fetch'
 import { useState } from 'react'
+import { BeakerIcon } from '@heroicons/react/24/solid'
+import { login } from '@/entities/users/fetch'
 
 export default function Login() {
   const [username, setUsername] = useState('')
