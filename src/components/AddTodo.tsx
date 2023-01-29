@@ -19,16 +19,16 @@ export default function AddTodo({ onSave }: Props) {
 
   return (
     <div>
-      <form onSubmit={handleOnFormSubmit}>
+      <form name='Adding new todo form' onSubmit={handleOnFormSubmit}>
         <input
-          className="border-2"
-          type="text"
-          onChange={handleOnTextChange}
-          placeholder="What you planning todo?"
-          name="addTodo"
-          id="addTodo"
-          value={value}
-        />
+            type="text"
+            title="Enter the text for the new todo"
+            onChange={handleOnTextChange}
+            placeholder="What you planning todo?"
+            name="addTodo"
+            id="addTodo"
+            value={value}
+          />
         <button type="submit">Add</button>
       </form>
     </div>
