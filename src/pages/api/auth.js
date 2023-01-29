@@ -1,1 +1,0 @@
-// TODO: include a simple implementation to simulate user auth.
