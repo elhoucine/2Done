@@ -13,8 +13,8 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
-        <Login />
+      <body className='max-w-none prose bg-gradient-to-r from-pink-500 to-yellow-500 h-screen'>
+        {/* <Login /> */}
         {children}
       </body>
     </html>

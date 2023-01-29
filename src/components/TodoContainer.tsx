@@ -54,16 +54,16 @@ export default function TodoContainer() {
   }
 
   return (
-    <div>
+    <div className='shadow-xl ring-gray-900/5 rounded-lg bg-white mt-36 w-1/2 mx-auto p-5 h-96'>
       {isLoading && <p>Loading items, please hold on...</p>}
       {!isLoading ? (
         <>
+          <AddTodo onSave={handleOnSave} />
           <List
             todos={todos}
             onDelete={handleOnDelete}
             onUpdate={handleOnUpdate}
           />
-          <AddTodo onSave={handleOnSave} />
         </>
       ) : null}
     </div>

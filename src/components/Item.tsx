@@ -1,5 +1,8 @@
-import { TodoType } from '@/entities/todos/types'
 import { useEffect, useState } from 'react'
+import { TodoType } from '@/entities/todos/types'
+import { CheckIcon } from '@heroicons/react/24/solid'
+import { XMarkIcon } from '@heroicons/react/24/solid'
+import { ArrowPathIcon } from '@heroicons/react/24/solid'
 
 interface Props {
   todo: TodoType
@@ -27,29 +30,43 @@ export default function Item({ todo, onDelete, onUpdate }: Props) {
     setTodoValue(e.currentTarget.value)
   }
 
-  const handleOnUpdate = () => {
+  const handleOnFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     onUpdate({ ...todo, value: todoValue })
     setIsUpdate(false)
   }
 
   return (
-    <li>
+    <li className='list-none m-0 p-0 mt-4'>
       {!isUpdate ? (
-        <>
-          <span onClick={handleItemClick}>{todo.value}</span>
-          <span onClick={handleDelete}>X</span>
-        </>
+        <div className='flex flex-row justify-between w-full'>
+          <p>{todo.value}</p>
+          <div className="flex flex-flow justify-center w-inherit">
+          <button className='cursor-pointer mr-7' onClick={handleItemClick}>
+              <ArrowPathIcon className="h-5 w-5 text-blue-500"/>
+            </button>
+            <button className='cursor-pointer' onClick={handleDelete}>
+              <XMarkIcon className="h-5 w-5 text-blue-500"/>
+            </button>
+          </div>
+        </div>
       ) : (
-        <>
-          <input
-            value={todoValue}
-            onChange={handleChange}
-            type="text"
-            name="todo"
-            id="todo"
-          />
-          <button onClick={handleOnUpdate}>Update</button>
-        </>
+        <form className='m-0 p-0' onSubmit={handleOnFormSubmit}>
+          <div className="flex flex-row justify-between m-0 p-0 mt-4">
+            <input
+              className='w-full'
+              value={todoValue}
+              onChange={handleChange}
+              title='Enter the text to update your todo'
+              type="text"
+              name="todo"
+              id="todo"
+            />
+            <button className='rounded-sm text-white bg-white'>
+              <CheckIcon className="h-5 w-5 text-blue-500 m-2"/>
+            </button>
+          </div>
+        </form>
       )}
     </li>
   )

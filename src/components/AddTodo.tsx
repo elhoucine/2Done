@@ -18,20 +18,21 @@ export default function AddTodo({ onSave }: Props) {
   }
 
   return (
-    <div>
-      <h1>Very long header title text to showcase</h1>
-      <h1>Very long header title text to showcase</h1>
-      <form name='Adding new todo form' onSubmit={handleOnFormSubmit}>
-        <input
-            type="text"
-            title="Enter the text for the new todo"
-            onChange={handleOnTextChange}
-            placeholder="What you planning todo?"
-            name="addTodo"
-            id="addTodo"
-            value={value}
-          />
-        <button type="submit">Add</button>
+    <div className='mt-5'>
+      <form className='flex flex-row ' name='Adding new todo form' onSubmit={handleOnFormSubmit}>
+        <div className="flex flex-row justify-between w-full">
+          <input
+              type="text"
+              className='w-full'
+              title="Enter the text for the new todo"
+              onChange={handleOnTextChange}
+              placeholder="What you planning todo?"
+              name="addTodo"
+              id="addTodo"
+              value={value}
+            />
+          <button className='bg-blue-500 p-2 rounded-sm text-white w-20' type="submit">Add</button>
+        </div>
       </form>
     </div>
   )
