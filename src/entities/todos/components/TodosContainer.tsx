@@ -6,12 +6,12 @@ import {
   updateTodo,
 } from '@/entities/todos/fetch'
 import { TodosType, TodoType } from '@/entities/todos/types'
-import List from '@/components/List'
+import List from '@/entities/todos/components/List'
 import AddTodo from './AddTodo'
 
-export default function TodoContainer() {
+export default function TodosContainer() {
   const [todos, setTodos] = useState<TodosType>({})
-  const [isLoading, setIsLoading] = useState<boolean>(true)  
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const fetchData = () => {
     fetchTodos()

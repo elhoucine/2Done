@@ -9,7 +9,7 @@ interface Props {
 
 export default function List({ todos, onDelete, onUpdate }: Props) {
   return (
-    <ul className='list-none p-0 m-0'>
+    <ul className="m-0 list-none p-0">
       {Object.keys(todos).map((key, index) => {
         return (
           <Item

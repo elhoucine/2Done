@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { authUser } from './store'
+import { authUser } from '../store'
 
 type Data = {
   data?: string
