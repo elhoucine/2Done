@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import { login } from '@/entities/users/fetch'
 import UserContext from '@/entities/users/context'
-import { useContext } from 'react'
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string>()
@@ -18,6 +19,7 @@ export default function Login() {
 
   const handleOnFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     localStorage.clear()
+    setIsLoading(true)
     e.preventDefault()
     try {
       const res = await login(username, password)
@@ -29,6 +31,8 @@ export default function Login() {
       }
     } catch (error) {
       setError(error as string)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -60,8 +64,9 @@ export default function Login() {
           id="addTodo"
           value={password}
         />
-        <button className="w-20 rounded-sm bg-blue-500 p-2 text-white">
-          Login
+        <button className='w-20 rounded-sm bg-blue-500 p-2 text-white mx-auto'
+          disabled={isLoading}>
+          {isLoading ? <ArrowPathIcon className='animate-spin w-7 h-7 mx-auto'/> : 'Login'}
         </button>
       </div>
     </form>
