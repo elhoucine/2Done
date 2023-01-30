@@ -1,14 +1,21 @@
-import { useState, useContext, useMemo } from 'react'
-import { ArrowPathIcon } from '@heroicons/react/24/outline'
-import { login } from '@/entities/users/fetch'
-import UserContext from '@/entities/users/context'
+'use client'
 
-export default function Login() {
+import { useState, useMemo, useEffect } from 'react'
+import { ArrowPathIcon } from '@heroicons/react/24/outline'
+import { register } from '@/entities/users/fetch'
+
+export default function Register() {
   const [isLoading, setIsLoading] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [avatar, setAvatar] = useState('')
   const [error, setError] = useState<string>()
-  const { onLogin } = useContext(UserContext)
+
+  useEffect(() => {
+    fetch('https://randomuser.me/api/')
+      .then(res => res.json())
+      .then(res => setAvatar(res?.results?.[0].picture?.large));
+  }, [])
 
   const isButtonDisabled = useMemo(() => {
     return username === '' || password === '' || isLoading
@@ -26,17 +33,15 @@ export default function Login() {
     setIsLoading(true)
     localStorage.clear()
     try {
-      const res = await login(username, password)
-      if (res) {
+      const res = await register(username, password, avatar)
+      if (res) {        
         localStorage.setItem('token', res)
-        onLogin(res)
+        window.location.replace('/');
       } else {
         setError('Wrong credentials.')
       }
     } catch (error) {
       setError(error as string)
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -58,8 +63,8 @@ export default function Login() {
           onChange={handleUsernameChange}
           name="username"
           id="username"
-          value={username}
           minLength={3}
+          value={username}
         />
         <label htmlFor="password">Password</label>
         <input
@@ -73,11 +78,8 @@ export default function Login() {
           minLength={6}
           value={password}
         />
-        <button className='rounded-sm bg-blue-500 p-2 text-white mx-auto w-full mt-5'
-          disabled={isButtonDisabled}>
-          {isLoading ? <ArrowPathIcon className='animate-spin w-7 h-7 mx-auto'/> : 'Login'}
-        </button>
-        <a className='text-gray-600 text-sm mt-10 text-center' href="/register">{'Create an account'}</a>
+        <button className='w-20 rounded-sm bg-blue-500 p-2 text-white mx-auto'
+          disabled={isButtonDisabled}>Register</button>
       </div>
     </form>
   )

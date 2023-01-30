@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import { UserContextProvider } from '../context'
 import { fetchUser } from '../fetch'
 
@@ -15,7 +16,7 @@ export const UserContextWrapper = ({ children }: Props) => {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
-      fetchUser('', token)
+      fetchUser()
         .then(() => {
           setIsLoggedIn(true)
         })
@@ -45,7 +46,7 @@ export const UserContextWrapper = ({ children }: Props) => {
         onLogout,
       }}
     >
-      {!isLoading ? children : 'Loading user...'}
+      {!isLoading ? children : <span><ArrowPathIcon className='animate-spin w-7 h-7 mx-auto'/></span>}
     </UserContextProvider>
   )
 }

@@ -1,6 +1,6 @@
 import { UserType } from '@/entities/users/types'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { authUser, getUser } from '../store'
+import { getUser } from '../store'
 import { isUserAuthenticated } from '../todos/utils'
 import { getUsernameFromToken } from '../utils'
 
@@ -9,13 +9,12 @@ type Data = {
   error?: string
 }
 
-// Fake auth implementation, not suitable for production.
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
   if (req.method === 'GET') {    
-    const token = req.headers.authorization
+    const token = req.query.id as string
 
     if (token && !isUserAuthenticated(token)) {
       res.status(401).json({ data: 'must be logged in!' })
@@ -26,14 +25,6 @@ export default function handler(
       res.status(200).json({ data: user })
     } else {
       res.status(500).json({ error: 'Something went wrong!' })
-    }
-  } else if (req.method === 'POST') {
-    const { username, password } = req.body?.data
-    const token = authUser(username, password)
-    if (token) {
-      res.status(200).json({ data: token })
-    } else {
-      res.status(401).json({ error: 'Username or password not correct!' })
     }
   }
 }

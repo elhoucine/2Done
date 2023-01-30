@@ -4,6 +4,7 @@ import { UserType } from './types'
 type Credentials = {
   username: string
   password: string
+  avatar?: string
 }
 
 type AuthArgs = {
@@ -17,8 +18,12 @@ export const login = async (
 ): Promise<string> =>
   await fetcher<Credentials, string>('api/auth', 'POST', { username, password })
 
-export const fetchUser = async (
+export const register = async (
   username: string,
-  token: string,
-): Promise<UserType> =>
-  await fetcher<AuthArgs, UserType>('api/auth/id', 'POST', { username, token })
+  password: string,
+  avatar: string,
+): Promise<string> =>
+  await fetcher<Credentials, string>('api/users', 'POST', { username, password, avatar })
+
+export const fetchUser = async (): Promise<UserType> =>
+  await fetcher<AuthArgs, UserType>('api/auth', 'GET')

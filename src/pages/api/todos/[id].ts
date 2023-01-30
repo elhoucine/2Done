@@ -18,20 +18,20 @@ export default function handler(
 
   if (req.method === 'GET') {
     if (req.query.id) {
-      const todo = getTodo(req.query.id as string)
+      const todo = getTodo(req.query.id as string, token as string)
       if (todo) {
         res.status(200).json({ data: todo })
       }
     }
   } else if (req.method === 'PUT') {
     if (req.query.id && req.body.data) {
-      if (updateTodo(req.query.id as string, req.body.data)) {
+      if (updateTodo(req.query.id as string, req.body.data, token as string)) {
         res.status(201).json({ data: 'ok' })
       }
     }
   } else if (req.method === 'DELETE') {
     if (req.query.id) {
-      if (deleteTodo(req.query.id as string)) {
+      if (deleteTodo(req.query.id as string, token as string)) {
         res.status(201).json({ data: 'ok' })
       }
     }

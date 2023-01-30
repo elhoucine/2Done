@@ -1,5 +1,6 @@
 import { TodosType } from '@/entities/todos/types'
-import { getUserToken } from '../store'
+import { getUser } from '../store'
+import { getUsernameFromToken } from '../utils'
 
 export const removeProperty = (obj: TodosType, key: string): TodosType => {
   const { [key]: unused, ...rest } = obj
@@ -7,5 +8,7 @@ export const removeProperty = (obj: TodosType, key: string): TodosType => {
 }
 
 export const isUserAuthenticated = (token: string | undefined): boolean => {
-  return !!token && getUserToken() === token
+  const username = getUsernameFromToken(token)
+  const user = getUser(username)
+  return !!token && user && token === user.token
 }

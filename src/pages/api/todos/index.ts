@@ -18,10 +18,10 @@ export default function handler(
   }
 
   if (req.method === 'GET') {
-    res.status(200).json({ data: getTodos() })
+    res.status(200).json({ data: getTodos(token as string) })
   } else if (req.method === 'POST') {
     if (req.body.data) {
-      if (addTodo(req.body.data)) {
+      if (addTodo(req.body.data, token as string)) {
         res.status(200).json({ data: 'ok' })
       }
     }
