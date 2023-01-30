@@ -37,33 +37,33 @@ export default function Item({ todo, onDelete, onUpdate }: Props) {
   }
 
   return (
-    <li className='list-none m-0 p-0 mt-4'>
+    <li className="m-0 mt-4 list-none p-0">
       {!isUpdate ? (
-        <div className='flex flex-row justify-between w-full'>
+        <div className="flex w-full flex-row justify-between">
           <p>{todo.value}</p>
-          <div className="flex flex-flow justify-center w-inherit">
-          <button className='cursor-pointer mr-7' onClick={handleItemClick}>
-              <ArrowPathIcon className="h-5 w-5 text-blue-500"/>
+          <div className="flex-flow w-inherit flex justify-center">
+            <button className="mr-7 cursor-pointer" onClick={handleItemClick}>
+              <ArrowPathIcon className="h-5 w-5 text-blue-500" />
             </button>
-            <button className='cursor-pointer' onClick={handleDelete}>
-              <XMarkIcon className="h-5 w-5 text-blue-500"/>
+            <button className="cursor-pointer" onClick={handleDelete}>
+              <XMarkIcon className="h-5 w-5 text-blue-500" />
             </button>
           </div>
         </div>
       ) : (
-        <form className='m-0 p-0' onSubmit={handleOnFormSubmit}>
-          <div className="flex flex-row justify-between m-0 p-0 mt-4">
+        <form className="m-0 p-0" onSubmit={handleOnFormSubmit}>
+          <div className="m-0 mt-4 flex flex-row justify-between p-0">
             <input
-              className='w-full'
+              className="w-full"
               value={todoValue}
               onChange={handleChange}
-              title='Enter the text to update your todo'
+              title="Enter the text to update your todo"
               type="text"
               name="todo"
               id="todo"
             />
-            <button className='rounded-sm text-white bg-white'>
-              <CheckIcon className="h-5 w-5 text-blue-500 m-2"/>
+            <button className="rounded-sm bg-white text-white">
+              <CheckIcon className="m-2 h-5 w-5 text-blue-500" />
             </button>
           </div>
         </form>

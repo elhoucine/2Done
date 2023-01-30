@@ -1,23 +1,25 @@
 'use client'
 
-import React from "react";
+import React from 'react'
 
 type ValuesType = {
-    isLoggedIn?: boolean,
-    username?: string,
-    avatar?: string,
-    onLogin?: (token: string) => void,
-    onLogout?: () => void,
+  isLoggedIn: boolean
+  isLoading: boolean
+  username?: string
+  avatar?: string
+  onLogin: (token: string) => void
+  onLogout: () => void
 }
 
 const UserContext = React.createContext<ValuesType>({
-    isLoggedIn: false,
-    username: '',
-    avatar: '',
-    onLogin: () => {},
-    onLogout: () => {},
-});
+  isLoggedIn: false,
+  isLoading: true,
+  username: '',
+  avatar: '',
+  onLogin: () => {},
+  onLogout: () => {},
+})
 
-export const UserProvider = UserContext.Provider;
+export const UserContextProvider = UserContext.Provider
 
-export default UserContext;
+export default UserContext

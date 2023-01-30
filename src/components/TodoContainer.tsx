@@ -11,7 +11,7 @@ import AddTodo from './AddTodo'
 
 export default function TodoContainer() {
   const [todos, setTodos] = useState<TodosType>({})
-  const [isLoading, setIsLoading] = useState<boolean>(true)  
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const fetchData = () => {
     fetchTodos()
