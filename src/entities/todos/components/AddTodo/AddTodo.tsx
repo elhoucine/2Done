@@ -21,14 +21,14 @@ export default function AddTodo({ onSave }: Props) {
     <div className="mt-5">
       <form
         className="flex flex-row "
-        name="Adding new todo form"
+        name="AddTodoForm"
         onSubmit={handleOnFormSubmit}
       >
         <div className="flex w-full flex-row justify-between">
           <input
             type="text"
             className="w-full"
-            title="Enter the text for the new todo"
+            title="addTodoInput"
             onChange={handleOnTextChange}
             placeholder="What you planning todo?"
             name="addTodo"

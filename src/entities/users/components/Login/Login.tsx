@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useMemo } from 'react'
 import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import { login } from '@/entities/users/fetch'
 import UserContext from '@/entities/users/context'
@@ -10,6 +10,10 @@ export default function Login() {
   const [error, setError] = useState<string>()
   const { onLogin } = useContext(UserContext)
 
+  const isButtonDisabled = useMemo(() => {
+    return username === '' || password === '' || isLoading
+  }, [username, password, isLoading])
+
   const handleUsernameChange = (e: React.FormEvent<HTMLInputElement>) => {
     setUsername(e?.currentTarget?.value)
   }
@@ -18,9 +22,9 @@ export default function Login() {
   }
 
   const handleOnFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    localStorage.clear()
-    setIsLoading(true)
     e.preventDefault()
+    setIsLoading(true)
+    localStorage.clear()
     try {
       const res = await login(username, password)
       if (res) {
@@ -39,33 +43,36 @@ export default function Login() {
   return (
     <form
       className="mx-auto mt-5 w-1/2 rounded-lg border-2 border-dashed border-blue-500 border-opacity-20 p-10"
-      name="User login form"
+      name="UserLoginForm"
       onSubmit={handleOnFormSubmit}
     >
-      {error ? <p className="text-red-500">{error}</p> : null}
+      <div role='alert' area-label='error'>
+        {error ? <p data-testid='error-message' className="text-red-500">{error}</p> : null}
+      </div>
       <div className="flex flex-col justify-between">
+        <label htmlFor="username">Username</label>
         <input
           className="mb-5 w-full border-blue-200"
           type="text"
           title="username"
           onChange={handleUsernameChange}
-          placeholder="Username"
-          name="addTodo"
-          id="addTodo"
+          name="username"
+          id="username"
           value={username}
         />
+        <label htmlFor="password">Password</label>
         <input
+          data-testid='password-input'
           className="mb-5 w-full border-blue-200"
           type="password"
           title="password"
           onChange={handlePasswordChange}
-          placeholder="What you planning todo?"
-          name="addTodo"
-          id="addTodo"
+          name="password"
+          id="password"
           value={password}
         />
         <button className='w-20 rounded-sm bg-blue-500 p-2 text-white mx-auto'
-          disabled={isLoading}>
+          disabled={isButtonDisabled}>
           {isLoading ? <ArrowPathIcon className='animate-spin w-7 h-7 mx-auto'/> : 'Login'}
         </button>
       </div>

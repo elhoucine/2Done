@@ -1,4 +1,4 @@
-import Login from '@/entities/users/components/Login'
+import Login from '@/entities/users/components/Login/Login'
 import './globals.css'
 
 export default function RootLayout({

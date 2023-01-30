@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Tab } from '@headlessui/react'
 import { TodosType, TodoType } from '@/entities/todos/types'
 import { classNames } from '@/entities/utils'
-import Item from './Item'
+import Item from '../Item/Item'
 
 interface Props {
   todos: TodosType

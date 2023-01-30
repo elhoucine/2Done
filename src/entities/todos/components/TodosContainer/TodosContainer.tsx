@@ -6,8 +6,8 @@ import {
   updateTodo,
 } from '@/entities/todos/fetch'
 import { TodosType, TodoType } from '@/entities/todos/types'
-import List from '@/entities/todos/components/List'
-import AddTodo from './AddTodo'
+import List from '@/entities/todos/components/List/List'
+import AddTodo from '../AddTodo/AddTodo'
 
 export default function TodosContainer() {
   const [todos, setTodos] = useState<TodosType>({})
@@ -18,6 +18,7 @@ export default function TodosContainer() {
       .then((res) => {
         setTodos(res)
       })
+      .catch(console.log)
       .finally(() => {
         setIsLoading(false)
       })
