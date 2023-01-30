@@ -16,3 +16,7 @@ export const fetcher = async <T, T2>(
   const { data } = await res.json()
   return data
 }
+
+export const classNames = (...classes: string[]): string => {
+  return classes.filter(Boolean).join(' ')
+}

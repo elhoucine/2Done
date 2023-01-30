@@ -44,13 +44,17 @@ export default function Item({ todo, onDelete, onUpdate }: Props) {
         <div className="flex w-full flex-row justify-between bg-gray-50 hover:bg-gray-100 p-4 pt-0 pb-0 rounded-md">
             <p className={todo.done ? 'line-through' : ''}>{todo.value}</p>
           <div className="flex-flow w-inherit flex justify-center">
-          <button className="mr-7 cursor-pointer" onClick={handleOnCheck}>
+            <button className="cursor-pointer " onClick={handleOnCheck}>
               <CheckCircleIcon className="h-5 w-5 text-blue-500 hover:text-blue-600" />
             </button>
-            <button className="mr-7 cursor-pointer" onClick={handleItemClick}>
-              <ArrowPathIcon className="h-5 w-5 text-blue-500 hover:text-blue-600" />
-            </button>
-            <button className="cursor-pointer" onClick={handleDelete}>
+            {todo.done === false ? 
+              <button className="ml-7 cursor-pointer" onClick={handleItemClick}>
+                <ArrowPathIcon className="h-5 w-5 text-blue-500 hover:text-blue-600" />
+              </button>
+              :
+              null
+            }
+            <button className="cursor-pointer ml-7" onClick={handleDelete}>
               <XMarkIcon className="h-5 w-5 text-blue-500 hover:text-blue-600" />
             </button>
           </div>
