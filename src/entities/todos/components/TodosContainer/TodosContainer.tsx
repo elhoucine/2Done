@@ -17,6 +17,7 @@ export default function TodosContainer() {
     fetchTodos()
       .then((res) => {
         setTodos(res)
+        console.log({ res })
       })
       .catch(console.log)
       .finally(() => {

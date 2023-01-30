@@ -14,7 +14,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  if (req.method === 'GET') {    
+  if (req.method === 'GET') {
     const token = req.headers.authorization
 
     if (token && !isUserAuthenticated(token)) {
@@ -29,9 +29,9 @@ export default function handler(
     }
   } else if (req.method === 'POST') {
     const { username, password } = req.body?.data
-    const token = authUser(username, password)
-    if (token) {
-      res.status(200).json({ data: token })
+    const user = authUser(username, password)
+    if (user) {
+      res.status(200).json({ data: user })
     } else {
       res.status(401).json({ error: 'Username or password not correct!' })
     }

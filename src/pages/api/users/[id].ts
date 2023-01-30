@@ -13,7 +13,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  if (req.method === 'GET') {    
+  if (req.method === 'GET') {
     const token = req.query.id as string
 
     if (token && !isUserAuthenticated(token)) {

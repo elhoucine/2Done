@@ -28,7 +28,7 @@ export default function Login() {
     try {
       const res = await login(username, password)
       if (res) {
-        localStorage.setItem('token', res)
+        localStorage.setItem('token', res.token)
         onLogin(res)
       } else {
         setError('Wrong credentials.')
@@ -46,8 +46,12 @@ export default function Login() {
       name="UserLoginForm"
       onSubmit={handleOnFormSubmit}
     >
-      <div role='alert' area-label='error'>
-        {error ? <p data-testid='error-message' className="text-red-500">{error}</p> : null}
+      <div role="alert" area-label="error">
+        {error ? (
+          <p data-testid="error-message" className="text-red-500">
+            {error}
+          </p>
+        ) : null}
       </div>
       <div className="flex flex-col justify-between">
         <label htmlFor="username">Username</label>
@@ -63,7 +67,7 @@ export default function Login() {
         />
         <label htmlFor="password">Password</label>
         <input
-          data-testid='password-input'
+          data-testid="password-input"
           className="mb-5 w-full border-blue-200"
           type="password"
           title="password"
@@ -73,11 +77,19 @@ export default function Login() {
           minLength={6}
           value={password}
         />
-        <button className='rounded-sm bg-blue-500 p-2 text-white mx-auto w-full mt-5'
-          disabled={isButtonDisabled}>
-          {isLoading ? <ArrowPathIcon className='animate-spin w-7 h-7 mx-auto'/> : 'Login'}
+        <button
+          className="mx-auto mt-5 w-full rounded-sm bg-blue-500 p-2 text-white"
+          disabled={isButtonDisabled}
+        >
+          {isLoading ? (
+            <ArrowPathIcon className="mx-auto h-7 w-7 animate-spin" />
+          ) : (
+            'Login'
+          )}
         </button>
-        <a className='text-gray-600 text-sm mt-10 text-center' href="/register">{'Create an account'}</a>
+        <a className="mt-10 text-center text-sm text-gray-600" href="/register">
+          {'Create an account'}
+        </a>
       </div>
     </form>
   )

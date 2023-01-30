@@ -13,8 +13,8 @@ export default function Register() {
 
   useEffect(() => {
     fetch('https://randomuser.me/api/')
-      .then(res => res.json())
-      .then(res => setAvatar(res?.results?.[0].picture?.large));
+      .then((res) => res.json())
+      .then((res) => setAvatar(res?.results?.[0].picture?.large))
   }, [])
 
   const isButtonDisabled = useMemo(() => {
@@ -34,9 +34,9 @@ export default function Register() {
     localStorage.clear()
     try {
       const res = await register(username, password, avatar)
-      if (res) {        
+      if (res) {
         localStorage.setItem('token', res)
-        window.location.replace('/');
+        window.location.replace('/')
       } else {
         setError('Wrong credentials.')
       }
@@ -51,8 +51,12 @@ export default function Register() {
       name="UserLoginForm"
       onSubmit={handleOnFormSubmit}
     >
-      <div role='alert' area-label='error'>
-        {error ? <p data-testid='error-message' className="text-red-500">{error}</p> : null}
+      <div role="alert" area-label="error">
+        {error ? (
+          <p data-testid="error-message" className="text-red-500">
+            {error}
+          </p>
+        ) : null}
       </div>
       <div className="flex flex-col justify-between">
         <label htmlFor="username">Username</label>
@@ -68,7 +72,7 @@ export default function Register() {
         />
         <label htmlFor="password">Password</label>
         <input
-          data-testid='password-input'
+          data-testid="password-input"
           className="mb-5 w-full border-blue-200"
           type="password"
           title="password"
@@ -78,8 +82,12 @@ export default function Register() {
           minLength={6}
           value={password}
         />
-        <button className='w-20 rounded-sm bg-blue-500 p-2 text-white mx-auto'
-          disabled={isButtonDisabled}>Register</button>
+        <button
+          className="mx-auto w-20 rounded-sm bg-blue-500 p-2 text-white"
+          disabled={isButtonDisabled}
+        >
+          Register
+        </button>
       </div>
     </form>
   )

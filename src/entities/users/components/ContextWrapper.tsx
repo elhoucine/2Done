@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import { UserContextProvider } from '../context'
 import { fetchUser } from '../fetch'
+import { UserType } from '../types'
 
 type Props = {
   children: React.ReactNode
@@ -12,12 +13,14 @@ type Props = {
 export const UserContextWrapper = ({ children }: Props) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [user, setUser] = useState<Partial<UserType>>({})
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       fetchUser()
-        .then(() => {
+        .then((user) => {
+          setUser(user)
           setIsLoggedIn(true)
         })
         .finally(() => {
@@ -33,20 +36,28 @@ export const UserContextWrapper = ({ children }: Props) => {
     setIsLoggedIn(false)
   }
 
-  const onLogin = () => {
+  const onLogin = (user: UserType) => {
     setIsLoggedIn(true)
+    setUser(user)
   }
 
   return (
     <UserContextProvider
       value={{
+        ...user,
         isLoggedIn,
         isLoading,
         onLogin,
         onLogout,
       }}
     >
-      {!isLoading ? children : <span><ArrowPathIcon className='animate-spin w-7 h-7 mx-auto'/></span>}
+      {!isLoading ? (
+        children
+      ) : (
+        <span>
+          <ArrowPathIcon className="mx-auto h-7 w-7 animate-spin" />
+        </span>
+      )}
     </UserContextProvider>
   )
 }

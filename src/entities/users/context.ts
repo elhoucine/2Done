@@ -1,13 +1,14 @@
 'use client'
 
 import React from 'react'
+import { UserType } from './types'
 
 type ValuesType = {
   isLoggedIn: boolean
   isLoading: boolean
   username?: string
   avatar?: string
-  onLogin: (token: string) => void
+  onLogin: (user: UserType) => void
   onLogout: () => void
 }
 
