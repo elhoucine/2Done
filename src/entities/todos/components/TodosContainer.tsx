@@ -29,7 +29,7 @@ export default function TodosContainer() {
 
   const handleOnSave = (value = ''): void => {
     if (value.trim()) {
-      addTodo({ id: '', value }).then(() => {
+      addTodo({ id: '', value, done: false }).then(() => {
         fetchData()
       })
     }
