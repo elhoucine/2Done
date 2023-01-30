@@ -6,7 +6,7 @@ import {
   updateTodo,
 } from '@/entities/todos/fetch'
 import { TodosType, TodoType } from '@/entities/todos/types'
-import List from '@/components/List'
+import List from '@/entities/todos/components/List'
 import AddTodo from './AddTodo'
 
 export default function TodosContainer() {

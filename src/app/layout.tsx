@@ -1,4 +1,4 @@
-import Login from '@/components/Login'
+import Login from '@/entities/users/components/Login'
 import './globals.css'
 
 export default function RootLayout({
@@ -14,7 +14,6 @@ export default function RootLayout({
       */}
       <head />
       <body className="prose max-w-none bg-gradient-to-r from-pink-500 to-yellow-500">
-        {/* <Login /> */}
         {children}
       </body>
     </html>

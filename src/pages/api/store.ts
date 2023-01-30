@@ -11,6 +11,7 @@ const initGetUser = (): UserType => {
     store(DEFAULT_USERNAME, {
       username: DEFAULT_USERNAME,
       password: 'trustpair',
+      avatar: '',
       token: '',
       todos: {},
     })

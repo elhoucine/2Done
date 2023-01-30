@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { UserContextProvider } from './context'
-import { fetchUser } from './fetch'
+import { UserContextProvider } from '../context'
+import { fetchUser } from '../fetch'
 
 type Props = {
   children: React.ReactNode
@@ -15,7 +15,7 @@ export const UserContextWrapper = ({ children }: Props) => {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
-      fetchUser(token)
+      fetchUser('', token)
         .then(() => {
           setIsLoggedIn(true)
         })
@@ -23,6 +23,7 @@ export const UserContextWrapper = ({ children }: Props) => {
           setIsLoading(false)
         })
     }
+    setIsLoading(false)
   }, [])
 
   const onLogout = () => {

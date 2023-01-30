@@ -1,5 +1,5 @@
 import App from '@/components/App'
-import { UserContextWrapper } from '@/entities/users/ContextWrapper'
+import { UserContextWrapper } from '@/entities/users/components/ContextWrapper'
 
 export default function Home() {
   return (

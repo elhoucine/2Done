@@ -10,7 +10,7 @@ export default function handler(
   res: NextApiResponse<Data>,
 ) {
   if (req.method === 'POST') {
-    const { data: token } = req.body
+    const { username, token } = req.body.data
     const userToken = getUserToken()
     if (token === userToken) {
       const user = getUser()
