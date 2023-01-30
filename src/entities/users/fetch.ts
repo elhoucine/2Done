@@ -7,8 +7,8 @@ type Credentials = {
 }
 
 type AuthArgs = {
-  username: string,
-  token: string,
+  username: string
+  token: string
 }
 
 export const login = async (
@@ -17,5 +17,8 @@ export const login = async (
 ): Promise<string> =>
   await fetcher<Credentials, string>('api/auth', 'POST', { username, password })
 
-export const fetchUser = async (username: string, token: string): Promise<UserType> =>
+export const fetchUser = async (
+  username: string,
+  token: string,
+): Promise<UserType> =>
   await fetcher<AuthArgs, UserType>('api/auth/id', 'POST', { username, token })
