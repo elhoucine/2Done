@@ -3,6 +3,7 @@ import { Tab } from '@headlessui/react'
 import { TodosType, TodoType } from '@/entities/todos/types'
 import { classNames } from '@/entities/utils'
 import Item from '../Item/Item'
+import { Quote } from '../Quote/Quote'
 
 interface Props {
   todos: TodosType
@@ -72,9 +73,7 @@ export default function List({ todos, onDelete, onUpdate }: Props) {
                   })}
                 </ul>
               ) : (
-                <blockquote>
-                  <p>{"Don't be busy be productive."}</p>
-                </blockquote>
+                <Quote/>
               )}
             </Tab.Panel>
           )
