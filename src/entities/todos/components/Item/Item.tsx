@@ -6,6 +6,7 @@ import {
   ArrowPathIcon,
   CheckCircleIcon,
 } from '@heroicons/react/24/outline'
+import { Input } from '@/components/Input/Input'
 
 interface Props {
   todo: TodoType
@@ -77,8 +78,7 @@ export default function Item({ todo, onDelete, onUpdate }: Props) {
       ) : (
         <form className="m-0 p-0" onSubmit={handleOnFormSubmit}>
           <div className="m-0 mt-4 flex flex-row justify-between p-0">
-            <input
-              className="w-full"
+            <Input
               value={todoValue}
               onChange={handleChange}
               title="todo"

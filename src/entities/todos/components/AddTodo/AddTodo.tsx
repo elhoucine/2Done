@@ -1,3 +1,4 @@
+import { Input } from '@/components/Input/Input'
 import React, { useState } from 'react'
 
 type Props = {
@@ -25,9 +26,8 @@ export default function AddTodo({ onSave }: Props) {
         onSubmit={handleOnFormSubmit}
       >
         <div className="flex w-full flex-row justify-between">
-          <input
+          <Input
             type="text"
-            className="w-full"
             title="addTodoInput"
             onChange={handleOnTextChange}
             placeholder="What you planning todo?"
