@@ -1,4 +1,4 @@
-import App from '@/app/components/App'
+import App from '@/app/App'
 import { UserContextWrapper } from '@/entities/users/components/ContextWrapper'
 import { Profile } from '@/entities/users/components/Profile/Profile'
 
