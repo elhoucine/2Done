@@ -1,3 +1,6 @@
+## Context
+This is a playground project to play with NextJS V13 `app_dir`, TypeScript, React-testing-library, and tiwlindCSS. Not meant for production.
+
 A todo app with user registration, and persisted data. The project uses [Next.js](https://nextjs.org/) and was bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
