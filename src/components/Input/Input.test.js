@@ -4,7 +4,7 @@ import {Input} from './Input'
 
 describe('<Input/>', () => {
   describe('HTML', () => {
-    it('renders a form', () => {
+    it('renders an input', () => {
       const onChange = jest.fn()
       render(<Input type='text' name='myInput' id='myInput' title='myInput' value='myInput' onChange={onChange} />)
 
