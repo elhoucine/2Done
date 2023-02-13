@@ -6,6 +6,8 @@ import {
   ArrowPathIcon,
   CheckCircleIcon,
 } from '@heroicons/react/24/outline'
+import { Input } from '@/components/Input/Input'
+import { Button } from '@/components/Button/Button'
 
 interface Props {
   todo: TodoType
@@ -49,36 +51,38 @@ export default function Item({ todo, onDelete, onUpdate }: Props) {
         <div className="flex w-full flex-row justify-between rounded-md bg-gray-50 p-4 pt-0 pb-0 hover:bg-gray-100">
           <p className={todo.done ? 'line-through' : ''}>{todo.value}</p>
           <div className="flex-flow w-inherit flex justify-center">
-            <button
+            <Button
+              type='button'
               aria-label="Complete"
               className="cursor-pointer "
               onClick={handleOnCheck}
             >
               <CheckCircleIcon className="h-5 w-5 text-blue-500 hover:text-blue-600" />
-            </button>
+            </Button>
             {todo.done === false ? (
-              <button
+              <Button
+                type='button'
                 aria-label="Update"
                 className="ml-7 cursor-pointer"
                 onClick={handleItemClick}
               >
                 <ArrowPathIcon className="h-5 w-5 text-blue-500 hover:text-blue-600" />
-              </button>
+              </Button>
             ) : null}
-            <button
+            <Button
+              type='button'
               aria-label="Delete"
               className="ml-7 cursor-pointer"
               onClick={handleDelete}
             >
               <XMarkIcon className="h-5 w-5 text-blue-500 hover:text-blue-600" />
-            </button>
+            </Button>
           </div>
         </div>
       ) : (
         <form className="m-0 p-0" onSubmit={handleOnFormSubmit}>
           <div className="m-0 mt-4 flex flex-row justify-between p-0">
-            <input
-              className="w-full"
+            <Input
               value={todoValue}
               onChange={handleChange}
               title="todo"
@@ -86,12 +90,12 @@ export default function Item({ todo, onDelete, onUpdate }: Props) {
               name="todo"
               id="todo"
             />
-            <button
+            <Button
               aria-label="submit"
               className="rounded-sm bg-white text-white"
             >
               <CheckIcon className="m-2 h-5 w-5 text-blue-500" />
-            </button>
+            </Button>
           </div>
         </form>
       )}

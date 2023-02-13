@@ -2,6 +2,8 @@ import { useState, useContext, useMemo } from 'react'
 import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import { login } from '@/entities/users/fetch'
 import UserContext from '@/entities/users/context'
+import { Input } from '@/components/Input/Input'
+import { Button } from '@/components/Button/Button'
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
@@ -55,8 +57,7 @@ export default function Login() {
       </div>
       <div className="flex flex-col justify-between">
         <label htmlFor="username">Username</label>
-        <input
-          className="mb-5 w-full border-blue-200"
+        <Input
           type="text"
           title="username"
           onChange={handleUsernameChange}
@@ -66,9 +67,8 @@ export default function Login() {
           minLength={3}
         />
         <label htmlFor="password">Password</label>
-        <input
+        <Input
           data-testid="password-input"
-          className="mb-5 w-full border-blue-200"
           type="password"
           title="password"
           onChange={handlePasswordChange}
@@ -77,7 +77,7 @@ export default function Login() {
           minLength={6}
           value={password}
         />
-        <button
+        <Button
           className="mx-auto mt-5 w-full rounded-sm bg-blue-500 p-2 text-white"
           disabled={isButtonDisabled}
         >
@@ -86,7 +86,7 @@ export default function Login() {
           ) : (
             'Login'
           )}
-        </button>
+        </Button>
         <a className="mt-10 text-center text-sm text-gray-600" href="/register">
           {'Create an account'}
         </a>

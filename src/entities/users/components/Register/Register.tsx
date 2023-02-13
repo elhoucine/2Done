@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
-import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import { register } from '@/entities/users/fetch'
+import { Input } from '@/components/Input/Input'
+import { Button } from '@/components/Button/Button'
 
 export default function Register() {
   const [isLoading, setIsLoading] = useState(false)
@@ -60,7 +61,7 @@ export default function Register() {
       </div>
       <div className="flex flex-col justify-between">
         <label htmlFor="username">Username</label>
-        <input
+        <Input
           className="mb-5 w-full border-blue-200"
           type="text"
           title="username"
@@ -71,7 +72,7 @@ export default function Register() {
           value={username}
         />
         <label htmlFor="password">Password</label>
-        <input
+        <Input
           data-testid="password-input"
           className="mb-5 w-full border-blue-200"
           type="password"
@@ -82,12 +83,12 @@ export default function Register() {
           minLength={6}
           value={password}
         />
-        <button
+        <Button
           className="mx-auto w-20 rounded-sm bg-blue-500 p-2 text-white"
           disabled={isButtonDisabled}
         >
           Register
-        </button>
+        </Button>
       </div>
     </form>
   )
