@@ -1,3 +1,4 @@
+import { Button } from '@/components/Button/Button'
 import { Input } from '@/components/Input/Input'
 import React, { useState } from 'react'
 
@@ -35,12 +36,12 @@ export default function AddTodo({ onSave }: Props) {
             id="addTodo"
             value={value}
           />
-          <button
+          <Button
             className="w-20 rounded-sm bg-blue-500 p-2 text-white"
             type="submit"
           >
             Add
-          </button>
+          </Button>
         </div>
       </form>
     </div>
