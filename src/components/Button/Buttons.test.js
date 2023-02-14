@@ -4,7 +4,7 @@ import { Button } from './Button'
 
 describe('<Button/>', () => {
   describe('HTML', () => {
-    it('renders a form', () => {
+    it('renders a button', () => {
       render(<Button value='button'/>)
       const button = screen.getByRole('button')
       expect(button).toBeVisible()
